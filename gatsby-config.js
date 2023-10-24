@@ -27,3 +27,7 @@ module.exports = {
     },
   ],
 };
+
+module.exports = {
+  plugins: [`gatsby-theme-portfolio-minimal`],
+};
