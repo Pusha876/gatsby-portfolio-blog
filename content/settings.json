@@ -21,14 +21,14 @@
     "navigation": {
       "header": [
         { "label": "About", "url": "/#about" },
-        { "label": "Blog", "url": "/blog" },
+        { "label": "Projects", "url": "/#Projects" },
         { "label": "Resume", "url": "https://www.pushtech.one" },
-        { "label": "Github", "url": "/#github" }
+        { "label": "Contact", "url": "/#contact" }
       ],
       "ctaButton": {
         "openNewTab": true,
-        "label": "Resume",
-        "url": "https://www.pushtech.one"
+        "label": "Blog coming soon",
+        "url": "https://blog.jamiepryce.com"
       },
       "footer": [
         { "label": "Privacy", "url": "/privacy" },

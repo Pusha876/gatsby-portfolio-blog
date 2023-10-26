@@ -14,6 +14,7 @@
     "suffix": "."
   },
   "description": "Love the life you live. Live the life you love.",
+  "tags": ["quote by Bob Marley"],
   "socialProfiles": {
     "from": ["LinkedIn", "Medium", "Github", "Mail"],
     "showIcons": false

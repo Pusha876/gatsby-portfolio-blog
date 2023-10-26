@@ -2,40 +2,34 @@
   "projects": [
     {
       "visible": true,
-      "category": "🕹️ EASY AND QUICK SETUP",
-      "title": "Add content and deploy!",
-      "description": "Get up and running within minutes. Just install the starter, add your content, deploy it, and there you go! This starter works seamlessly with hosts like Netlify. Photo by Clément H on Unsplash.",
-      "tags": ["Content Integration", "Ready-2-Deploy"],
+      "title": "Azure Resume Challenge",
+      "description": "This is a digital resume completely hosted on Azure with my own custom domain. I used a ton of Azure services to complete this project with very minimal cost (we love that😁).",
+      "tags": ["Blob Storage", "Azure Functions", "CosmosDB", "CI/CD workflow with GitHub", "Webpage creation with HTML & CSS", "Serverless Database"],
       "image": {
-        "src": "../../images/clement-h-95YRwf6CNw8-unsplash.jpg",
+        "src": "../../images/JP-Resume.png",
         "alt": "Quick Setup",
-        "linkTo": "https://github.com/konstantinmuenster/gatsby-starter-portfolio-minimal-theme"
+        "linkTo": "https://www.pushtech.one/"
       },
       "links": [
         {
           "type": "github",
-          "url": "https://github.com/konstantinmuenster/gatsby-starter-portfolio-minimal-theme"
-        },
-        {
-          "type": "external",
-          "url": "https://www.gatsbyjs.org/docs/mdx/writing-pages/"
+          "url": "https://github.com/Pusha876/gatsby-portfolio-blog"
         }
       ]
     },
     {
       "visible": true,
-      "category": "🧰 EXTENDABLE LAYOUT",
-      "title": "Add more sections!",
-      "description": "The starter includes predefined sections as well as a template for new, custom sections. Moreover, you can add new projects to this section without additional coding. Photo by Kelly Sikkema on Unsplash.",
-      "tags": ["Custom Sections", "Easy-2-Use"],
+      "title": "Azure Static Web Apps",
+      "description": "This project has two separate learning parts. First, building a web app by using Gatsby web framework. Secondly, serving this portfolio website to the world by taking advantage of Azure Static Web Apps (for FREE😮. ",
+      "tags": ["Web hosting", "Integrated API with Azure Functions", "CI/CD support from GitHub", "SSL Certificates", "Custom Domain"],
       "image": {
-        "src": "../../images/kelly-sikkema-Hl3LUdyKRic-unsplash.jpg",
-        "alt": "Extendable Layout"
+        "src": "../../images/portfolio-1.png",
+        "alt": "Portfolio website homepage"
       },
       "links": [
         {
           "type": "github",
-          "url": "https://github.com/konstantinmuenster/gatsby-starter-portfolio-minimal-theme"
+          "url": "https://github.com/Pusha876/gatsby-portfolio-blog"
         }
       ]
     }
@@ -43,6 +37,6 @@
   "button": {
     "visible": true,
     "label": "Visit on Github",
-    "url": "https://github.com/konstantinmuenster/gatsby-theme-portfolio-minimal"
+    "url": "https://github.com/Pusha876"
   }
 }
