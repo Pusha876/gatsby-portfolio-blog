@@ -1,13 +1,13 @@
 {
-  "name": "Gatsby Starter For Portfolio Minimal",
-  "email": "example@mail.com",
-  "description": "If you have any problems with this theme, create an issue in the GitHub repository.",
+  "name": "Jamie Pryce",
+  "email": "pushtech@push-pi.com",
+  "description": "Feel feel to contact me on any of my social media profiles, or drop me a line in an email.",
   "image": {
-    "src": "../../images/favicon.png",
-    "alt": "Gatsby Logo"
+    "src": "../../images/P.I. Logo.jpg",
+    "alt": "Portfolio Logo"
   },
   "socialProfiles": {
-    "from": ["LinkedIn", "Medium", "Github", "Mail"],
+    "from": ["Twitter", "LinkedIn", "Instagram",  "Github"],
     "showIcons": true
   }
 }

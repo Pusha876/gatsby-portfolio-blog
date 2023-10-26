@@ -1,20 +1,19 @@
 {
-  "intro": "Hej",
+  "intro": "Hello",
   "heroPhoto": {
-    "src": "../../images/lego-dummy.png",
+    "src": "../../images/P.I. Logo1.png",
     "alt": "My Photo"
   },
   "image": {
-    "src": "../../images/waving-hand.png",
+    "src": "../../images/waving-blk-hand.png",
     "alt": "Waving Hand Emoji"
   },
-  "title": "I'm a Gatsby Starter",
+  "title": "My name is Jamie B. Pryce.",
   "subtitle": {
-    "prefix": "I do all the setup ",
-    "highlight": "for you",
+    "prefix": "Cloud Engineer in the making🤨 ",
     "suffix": "."
   },
-  "description": "A Gatsby Starter Project to easily get started with Portfolio Minimal theme.",
+  "description": "Love the life you live. Live the life you love.",
   "socialProfiles": {
     "from": ["LinkedIn", "Medium", "Github", "Mail"],
     "showIcons": false

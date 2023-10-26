@@ -5,15 +5,15 @@
     "title": "Jamie Pryce",
     "titleTemplate": "%s · Portfolio Minimal",
     "description": "Jamie Pryce's Portfolio Website.",
-    "author": "Konstantin Münster",
+    "author": "Jamie B. Pryce",
     "avatar": "../content/images/gatsby.png",
-    "bio": "This biography will be used in the footer area of an article and can contain some more details about the author.",
+    "bio": "Aspiring Cloud Engineer who is fascinated with everything cloud related.",
     "social": {
-      "behance": "https://behance.com",
-      "github": "https://github.com/konstantinmuenster",
-      "medium": "https://konstantinmuenster.medium.com",
-      "linkedin": "https://www.linkedin.com/in/konstantin-muenster/",
-      "mail": "mailto:mail@konstantin.digital"
+      "twitter": "https://twitter.com/Pushtech876",
+      "linkedin": "https://linkedin.com/in/jamie-pryce-9b41b2164",
+      "instagram": "https://instagram.com/pryce_law24",
+      "github": "https://github.com/Pusha876/azure-resume",
+      "mail": "pushtech@push-pi.com"
     }
   },
   "siteConfiguration": {
@@ -22,7 +22,7 @@
       "header": [
         { "label": "About", "url": "/#about" },
         { "label": "Blog", "url": "/blog" },
-        { "label": "Features", "url": "/#features" },
+        { "label": "Resume", "url": "https://www.pushtech.one" },
         { "label": "Github", "url": "/#github" }
       ],
       "ctaButton": {

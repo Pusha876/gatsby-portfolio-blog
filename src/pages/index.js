@@ -1,7 +1,6 @@
 import React from "react";
 import {
   AboutSection,
-  ArticlesSection,
   ContactSection,
   HeroSection,
   InterestsSection,
@@ -16,11 +15,10 @@ export default function IndexPage() {
       <Seo title="Jamie Pryce" />
       <Page useSplashScreenAnimation>
         <HeroSection sectionId="hero" />
-        <ArticlesSection sectionId="articles" heading="Latest Articles" sources={['Medium']} />
         <AboutSection sectionId="about" heading="Why I started this Tech Journey" />
-        <InterestsSection sectionId="details" heading="Details" />
-        <ProjectsSection sectionId="features" heading="Built-in Features" />
-        <ContactSection sectionId="github" heading="Issues?" />
+        <InterestsSection sectionId="Interests" heading="Interests" />
+        <ProjectsSection sectionId="Projects" heading="Projects" />
+        <ContactSection sectionId="Contact me" heading="Contact Me" />
       </Page>
     </>
   );

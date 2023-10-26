@@ -9,4 +9,3 @@ I wouldn't call myself a sports fanatic per say, but more like a dedicated fan. 
 
 With that being said. For the longest time I told myself that being smart wasn't cool. In reality, the coolest thing is to have the ability to use your brain to solve problems. Now, I get a sense of pride, seeing my daughter be inspired and fearless because of my efforts to make a career change without having a safety net to guarantee success. The only guarantee in this life is the effort you put forth. Join me on my journey of learning, and self growth. Hopefully, I will inspire you to keep on <a href="https://instagram.com/pryce_law24" target="_blank" rel="nofollow noopener noreferrer" aria-label="External Link"><u>pushing</u></a>.
 
-Photo by <a href="https://www.pushtech.one" target="_blank" rel="nofollow noopener noreferrer" aria-label="External Link"><u>Jamie Pryce</u></a> on Galaxy S20
