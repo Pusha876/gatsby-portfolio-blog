@@ -4,7 +4,7 @@
       "visible": true,
       "title": "Azure Resume Challenge",
       "description": "This is a digital resume completely hosted on Azure with my own custom domain. I used a ton of Azure services to complete this project with very minimal cost (we love that😁).",
-      "tags": ["Blob Storage", "Azure Functions", "CosmosDB", "CI/CD workflow with GitHub", "Webpage creation with HTML & CSS", "Serverless Database"],
+      "tags": ["Blob Storage", "Azure Functions", "CosmosDB", "Azure CDN", "CI/CD workflow with GitHub", "Webpage creation with HTML & CSS", "Serverless Database"],
       "image": {
         "src": "../../images/JP-Resume.png",
         "alt": "Quick Setup",
