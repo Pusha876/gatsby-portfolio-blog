@@ -32,6 +32,22 @@
           "url": "https://github.com/Pusha876/gatsby-portfolio-blog"
         }
       ]
+    },
+    {
+      "visible": true,
+      "title": "Bash-based CLI Uploader Tool",
+      "description": "The azure-upload CLI tool is your new best friend for chucking files into Azure storage! It’s like magic but with a progress bar. Just run it, sit back, and watch your files zoom to the cloud in style.✨📦🚀 ",
+      "tags": ["Linux Bash and Networking","Blob Storage", "Service Principals", "GitHub Repository"],
+      "image": {
+        "src": "../../images/uploader-flow.png",
+        "alt": "Portfolio website homepage"
+      },
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/Pusha876/azure-Cloud-Uploader-CLI"
+        }
+      ]
     }
   ],
   "button": {
