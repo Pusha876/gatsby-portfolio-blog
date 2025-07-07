@@ -55,7 +55,7 @@
       "description": "Many businesses suffer from unexpected application downtime and delayed incident recovery due to missing automated monitoring, alerting, and scaling. This project solves: Auto-healing infrastructure, Instant alerting, Automated scaling of critical apps, and Cost optimization via serverless or containerization.",
       "tags": ["Azure Container Instances", "Azure Monitor", "Log Analytics", "Terraform", "Azure DevOps", "Auto-healing", "Azure Functions", "Containerized Python API"],
       "image": {
-        "src": "../../images/autoscale-healthcheck-diagram.png",
+        "src": "content/images/autoscale-healthcheck-diagram.png",
         "alt": "Autoscale Healthcheck DevOps Architecture Diagram"
       },
       "links": [
