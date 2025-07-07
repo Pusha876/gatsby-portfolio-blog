@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
     <title>Jamie Pryce - Portfolio</title>
     <style>
         body { 
@@ -9,39 +8,80 @@
             margin: 20px; 
             background: white; 
             color: black; 
+            line-height: 1.6;
         }
-        h1 { color: #333; }
+        h1 { 
+            color: #333; 
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
         .project { 
-            border: 1px solid #ccc; 
+            border: 1px solid #ddd; 
             margin: 20px 0; 
-            padding: 15px; 
+            padding: 20px; 
             background: #f9f9f9; 
+            border-radius: 5px;
+        }
+        .project h3 {
+            color: #333;
+            margin-top: 0;
+        }
+        .tags { 
+            margin: 15px 0;
         }
         .tag { 
             background: #007acc; 
             color: white; 
-            padding: 2px 6px; 
-            margin: 2px; 
+            padding: 3px 8px; 
+            margin: 3px; 
             display: inline-block; 
             font-size: 12px; 
+            border-radius: 3px;
         }
-        a { 
-            color: #007acc; 
-            text-decoration: none; 
+        .github-link { 
+            background: #28a745;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 10px;
         }
-        a:hover { 
-            text-decoration: underline; 
+        .github-link:hover { 
+            background: #218838;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .footer a {
+            background: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .footer a:hover {
+            background: #5a6268;
         }
     </style>
 </head>
 <body>
     <h1>Jamie Pryce - Portfolio</h1>
-    <p>Aspiring Cloud Engineer | Azure Enthusiast</p>
+    <p class="subtitle">Aspiring Cloud Engineer | Azure Enthusiast</p>
     
     <div class="project">
         <h3>Azure Resume Challenge</h3>
         <p>This is a digital resume completely hosted on Azure with my own custom domain. I used a ton of Azure services to complete this project with very minimal cost (we love that😁).</p>
-        <div>
+        <div class="tags">
             <span class="tag">Blob Storage</span>
             <span class="tag">Azure Functions</span>
             <span class="tag">CosmosDB</span>
@@ -50,39 +90,39 @@
             <span class="tag">HTML & CSS</span>
             <span class="tag">Serverless Database</span>
         </div>
-        <p><a href="https://github.com/Pusha876/gatsby-portfolio-blog" target="_blank">View on GitHub</a></p>
+        <a href="https://github.com/Pusha876/gatsby-portfolio-blog" class="github-link" target="_blank">View on GitHub</a>
     </div>
     
     <div class="project">
         <h3>Azure Static Web Apps</h3>
         <p>This project has two separate learning parts. First, building a web app by using Gatsby web framework. Secondly, serving this portfolio website to the world by taking advantage of Azure Static Web Apps (for FREE😮).</p>
-        <div>
+        <div class="tags">
             <span class="tag">Web hosting</span>
             <span class="tag">Azure Functions</span>
             <span class="tag">CI/CD with GitHub</span>
             <span class="tag">SSL Certificates</span>
             <span class="tag">Custom Domain</span>
         </div>
-        <p><a href="https://github.com/Pusha876/gatsby-portfolio-blog" target="_blank">View on GitHub</a></p>
+        <a href="https://github.com/Pusha876/gatsby-portfolio-blog" class="github-link" target="_blank">View on GitHub</a>
     </div>
     
     <div class="project">
         <h3>Bash-based CLI Uploader Tool</h3>
         <p>The azure-upload CLI tool is your new best friend for chucking files into Azure storage! It's like magic but with a progress bar. Just run it, sit back, and watch your files zoom to the cloud in style.✨📦🚀</p>
-        <div>
+        <div class="tags">
             <span class="tag">Linux Bash</span>
             <span class="tag">Networking</span>
             <span class="tag">Blob Storage</span>
             <span class="tag">Service Principals</span>
             <span class="tag">GitHub</span>
         </div>
-        <p><a href="https://github.com/Pusha876/azure-Cloud-Uploader-CLI" target="_blank">View on GitHub</a></p>
+        <a href="https://github.com/Pusha876/azure-Cloud-Uploader-CLI" class="github-link" target="_blank">View on GitHub</a>
     </div>
     
     <div class="project">
         <h3>autoscale-healthcheck-devops</h3>
         <p>Many businesses suffer from unexpected application downtime and delayed incident recovery due to missing automated monitoring, alerting, and scaling. This project solves: Auto-healing infrastructure, Instant alerting, Automated scaling of critical apps, and Cost optimization via serverless or containerization.</p>
-        <div>
+        <div class="tags">
             <span class="tag">Azure Container Instances</span>
             <span class="tag">Azure Monitor</span>
             <span class="tag">Log Analytics</span>
@@ -92,9 +132,11 @@
             <span class="tag">Azure Functions</span>
             <span class="tag">Python API</span>
         </div>
-        <p><a href="https://github.com/Pusha876/autoscale-healthcheck-devops" target="_blank">View on GitHub</a></p>
+        <a href="https://github.com/Pusha876/autoscale-healthcheck-devops" class="github-link" target="_blank">View on GitHub</a>
     </div>
     
-    <p><a href="https://github.com/Pusha876" target="_blank">Visit my GitHub Profile</a></p>
+    <div class="footer">
+        <a href="https://github.com/Pusha876" target="_blank">Visit my GitHub Profile</a>
+    </div>
 </body>
 </html>
