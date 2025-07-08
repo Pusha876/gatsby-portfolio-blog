@@ -1,16 +1,27 @@
 {
-  "routes": [],
+  "routes": [
+    {
+      "route": "/api/*",
+      "allowedRoles": ["anonymous"]
+    }
+  ],
   "navigationFallback": {
     "rewrite": "/index.html"
   },
   "mimeTypes": {
     ".html": "text/html",
     ".css": "text/css",
-    ".js": "application/javascript"
+    ".js": "application/javascript",
+    ".json": "application/json"
   },
   "globalHeaders": {
     "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0",
     "Pragma": "no-cache",
     "Expires": "0"
+  },
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/index.html"
+    }
   }
 }

@@ -20,7 +20,12 @@
     "switch:gatsby": "cp staticwebapp.config.gatsby.json staticwebapp.config.json",
     "swa:init": "npx swa init --yes",
     "swa:build": "npx swa build",
-    "swa:deploy": "npx swa deploy --env production"
+    "swa:deploy": "npx swa deploy --env production",
+    "api:install": "cd api && npm install",
+    "api:start": "cd api && func start",
+    "api:dev": "cd api && npm start",
+    "dev:full": "concurrently \"npm run develop\" \"npm run api:start\"",
+    "dev:static": "concurrently \"npx http-server . -p 3000\" \"npm run api:start\""
   },
   "dependencies": {
     "gatsby": "^5.13.0",
@@ -29,9 +34,9 @@
     "gatsby-plugin-sharp": "^5.13.0",
     "gatsby-source-filesystem": "^5.13.0",
     "gatsby-theme-portfolio-minimal": "^4.6.1",
-    "gatsby-transformer-sharp": "^5.13.0",
     "gatsby-transformer-json": "^5.13.0",
     "gatsby-transformer-remark": "^6.13.0",
+    "gatsby-transformer-sharp": "^5.13.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
@@ -40,6 +45,8 @@
   "devDependencies": {
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0"
+    "@types/react-dom": "^18.0.0",
+    "concurrently": "^8.2.2",
+    "http-server": "^14.1.1"
   }
 }
