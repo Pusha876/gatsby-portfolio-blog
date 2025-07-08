@@ -5,8 +5,41 @@
   "private": true,
   "author": "Jamie Pryce",
   "license": "MIT",
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "static": "echo 'Using static HTML deployment - index.html will be deployed'",
+    "build:static": "echo 'Static HTML is ready for deployment'",
+    "build:gatsby": "gatsby clean && gatsby build",
+    "build:fast": "gatsby build --no-uglify",
+    "deploy:static": "echo 'Deploy the root index.html file'",
+    "deploy:gatsby": "echo 'Deploy the public/ folder after gatsby build'",
+    "switch:static": "cp staticwebapp.config.json staticwebapp.config.json",
+    "switch:gatsby": "cp staticwebapp.config.gatsby.json staticwebapp.config.json",
+    "swa:init": "npx swa init --yes",
+    "swa:build": "npx swa build",
+    "swa:deploy": "npx swa deploy --env production"
+  },
   "dependencies": {
-    "@types/react": "^19.1.8",
-    "react": "^19.1.0"
+    "gatsby": "^5.13.0",
+    "gatsby-plugin-image": "^3.13.0",
+    "gatsby-plugin-react-helmet": "^6.13.0",
+    "gatsby-plugin-sharp": "^5.13.0",
+    "gatsby-source-filesystem": "^5.13.0",
+    "gatsby-theme-portfolio-minimal": "^4.6.1",
+    "gatsby-transformer-sharp": "^5.13.0",
+    "gatsby-transformer-json": "^5.13.0",
+    "gatsby-transformer-remark": "^6.13.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "typescript": "^4.9.5"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0"
   }
 }
