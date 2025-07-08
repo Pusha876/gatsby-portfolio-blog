@@ -9,10 +9,12 @@ export enum Theme {
 export enum ActionType {
   SetTheme = 'SET_THEME',
   ToggleTheme = 'TOGGLE_THEME',
+  SetSplashScreenDone = 'SET_SPLASH_SCREEN_DONE',
 }
 
 export interface GlobalState {
   theme: Theme;
+  splashScreenDone: boolean;
 }
 
 export interface Action {
@@ -23,6 +25,7 @@ export interface Action {
 // Initial state
 const initialState: GlobalState = {
   theme: Theme.Light,
+  splashScreenDone: false,
 };
 
 // Context
@@ -43,6 +46,11 @@ function globalStateReducer(state: GlobalState, action: Action): GlobalState {
       return {
         ...state,
         theme: state.theme === Theme.Light ? Theme.Dark : Theme.Light,
+      };
+    case ActionType.SetSplashScreenDone:
+      return {
+        ...state,
+        splashScreenDone: action.payload,
       };
     default:
       return state;
@@ -70,5 +78,9 @@ export function useGlobalState() {
   if (context === undefined) {
     throw new Error('useGlobalState must be used within a GlobalStateProvider');
   }
-  return context;
+  return {
+    globalState: context.state,
+    setGlobalState: context.dispatch,
+    dispatch: context.dispatch // for backward compatibility
+  };
 }

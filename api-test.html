@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .endpoint { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .result { background: #f5f5f5; padding: 10px; margin: 10px 0; white-space: pre-wrap; }
+        button { background: #0078d4; color: white; border: none; padding: 10px 15px; cursor: pointer; }
+        button:hover { background: #106ebe; }
+        .error { background: #ffebee; color: #c62828; }
+        .success { background: #e8f5e8; color: #2e7d32; }
+    </style>
+</head>
+<body>
+    <h1>Portfolio API Test</h1>
+    <p>Test the API endpoints once deployed to Azure Static Web Apps.</p>
+    
+    <div class="endpoint">
+        <h3>Health Check</h3>
+        <button onclick="testHealth()">Test /api/health</button>
+        <div id="health-result" class="result"></div>
+    </div>
+    
+    <div class="endpoint">
+        <h3>Portfolio Stats</h3>
+        <button onclick="testStats()">Test /api/stats</button>
+        <div id="stats-result" class="result"></div>
+    </div>
+    
+    <div class="endpoint">
+        <h3>Contact Form</h3>
+        <form onsubmit="testContact(event)">
+            <input type="text" id="name" placeholder="Name" required style="margin: 5px; padding: 8px; width: 200px;"><br>
+            <input type="email" id="email" placeholder="Email" required style="margin: 5px; padding: 8px; width: 200px;"><br>
+            <input type="text" id="subject" placeholder="Subject" required style="margin: 5px; padding: 8px; width: 200px;"><br>
+            <textarea id="message" placeholder="Message" required style="margin: 5px; padding: 8px; width: 200px; height: 60px;"></textarea><br>
+            <button type="submit" style="margin: 5px;">Test /api/contact</button>
+        </form>
+        <div id="contact-result" class="result"></div>
+    </div>
+
+    <script>
+        const baseUrl = window.location.origin;
+        
+        async function testHealth() {
+            const resultDiv = document.getElementById('health-result');
+            resultDiv.textContent = 'Testing...';
+            resultDiv.className = 'result';
+            
+            try {
+                const response = await fetch(`${baseUrl}/api/health`);
+                const data = await response.json();
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+                resultDiv.className = response.ok ? 'result success' : 'result error';
+            } catch (error) {
+                resultDiv.textContent = `Error: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+        
+        async function testStats() {
+            const resultDiv = document.getElementById('stats-result');
+            resultDiv.textContent = 'Testing...';
+            resultDiv.className = 'result';
+            
+            try {
+                const response = await fetch(`${baseUrl}/api/stats`);
+                const data = await response.json();
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+                resultDiv.className = response.ok ? 'result success' : 'result error';
+            } catch (error) {
+                resultDiv.textContent = `Error: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+        
+        async function testContact(event) {
+            event.preventDefault();
+            const resultDiv = document.getElementById('contact-result');
+            resultDiv.textContent = 'Testing...';
+            resultDiv.className = 'result';
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+            
+            try {
+                const response = await fetch(`${baseUrl}/api/contact`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                const data = await response.json();
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+                resultDiv.className = response.ok ? 'result success' : 'result error';
+            } catch (error) {
+                resultDiv.textContent = `Error: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+    </script>
+</body>
+</html>
