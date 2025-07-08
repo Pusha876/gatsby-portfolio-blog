@@ -3,222 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <title>Jamie Pryce - Portfolio</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1000px;
+            font-family: Arial, sans-serif;
+            max-width: 800px;
             margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
             background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #333;
         }
-        
-        h1 {
+        .header {
             text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        h1 {
             color: #2c3e50;
             margin-bottom: 10px;
-            font-size: 2.5rem;
         }
-        
         .subtitle {
-            text-align: center;
             color: #7f8c8d;
-            margin-bottom: 40px;
-            font-size: 1.2rem;
             font-style: italic;
         }
-        
-        .intro {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 1.1rem;
-        }
-        
-        h2 {
-            color: #2c3e50;
-            margin-bottom: 30px;
-            font-size: 2rem;
-            text-align: center;
-        }
-        
         .project {
-            margin-bottom: 30px;
-            padding: 25px;
-            border: 1px solid #e1e8ed;
-            border-radius: 8px;
-            background: #f8f9fa;
-            transition: transform 0.2s ease;
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
         }
-        
-        .project:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
         .project h3 {
             color: #2c3e50;
             margin-bottom: 15px;
-            font-size: 1.5rem;
         }
-        
-        .project p {
-            margin-bottom: 15px;
-            line-height: 1.7;
-        }
-        
-        .technologies {
+        .tech-list {
             margin: 15px 0;
+            font-size: 14px;
         }
-        
-        .technologies strong {
+        .tech-list strong {
             color: #34495e;
         }
-        
-        .tech-tag {
-            display: inline-block;
-            background: #3498db;
-            color: white;
-            padding: 4px 8px;
-            margin: 2px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-        }
-        
         .github-link {
             display: inline-block;
-            background: #28a745;
+            background: #007acc;
             color: white;
-            padding: 10px 20px;
+            padding: 8px 16px;
             text-decoration: none;
-            border-radius: 5px;
-            margin-top: 15px;
-            transition: background-color 0.2s ease;
+            border-radius: 4px;
+            margin-top: 10px;
         }
-        
         .github-link:hover {
-            background: #218838;
+            background: #005999;
         }
-        
         .footer {
             text-align: center;
             margin-top: 50px;
-            padding-top: 30px;
-            border-top: 2px solid #e1e8ed;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
         }
-        
         .profile-link {
-            display: inline-block;
-            background: #6c757d;
+            background: #28a745;
             color: white;
-            padding: 15px 30px;
+            padding: 12px 24px;
             text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            transition: background-color 0.2s ease;
+            border-radius: 4px;
+            font-weight: bold;
         }
-        
         .profile-link:hover {
-            background: #5a6268;
-        }
-        
-        hr {
-            border: none;
-            height: 1px;
-            background: #e1e8ed;
-            margin: 20px 0;
+            background: #218838;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="header">
         <h1>Jamie Pryce</h1>
         <p class="subtitle">Aspiring Cloud Engineer | Azure Enthusiast</p>
-        <p class="intro">Welcome to my portfolio showcasing Azure and cloud engineering projects.</p>
-        
-        <h2>Featured Projects</h2>
-        
-        <div class="project">
-            <h3>Azure Resume Challenge</h3>
-            <p>This is a digital resume completely hosted on Azure with my own custom domain. I used a ton of Azure services to complete this project with very minimal cost (we love that😁).</p>
-            <div class="technologies">
-                <strong>Technologies:</strong>
-                <span class="tech-tag">Blob Storage</span>
-                <span class="tech-tag">Azure Functions</span>
-                <span class="tech-tag">CosmosDB</span>
-                <span class="tech-tag">Azure CDN</span>
-                <span class="tech-tag">CI/CD</span>
-                <span class="tech-tag">HTML & CSS</span>
-                <span class="tech-tag">Serverless Database</span>
-            </div>
-            <a href="https://github.com/Pusha876/gatsby-portfolio-blog" class="github-link" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project">
+        <h3>Azure Resume Challenge</h3>
+        <p>This is a digital resume completely hosted on Azure with my own custom domain. I used a ton of Azure services to complete this project with very minimal cost (we love that😁).</p>
+        <div class="tech-list">
+            <strong>Technologies:</strong> Blob Storage, Azure Functions, CosmosDB, Azure CDN, CI/CD with GitHub, HTML & CSS, Serverless Database
         </div>
-        
-        <div class="project">
-            <h3>Azure Static Web Apps</h3>
-            <p>This project has two separate learning parts. First, building a web app by using Gatsby web framework. Secondly, serving this portfolio website to the world by taking advantage of Azure Static Web Apps (for FREE😮).</p>
-            <div class="technologies">
-                <strong>Technologies:</strong>
-                <span class="tech-tag">Web hosting</span>
-                <span class="tech-tag">Azure Functions</span>
-                <span class="tech-tag">CI/CD</span>
-                <span class="tech-tag">SSL Certificates</span>
-                <span class="tech-tag">Custom Domain</span>
-            </div>
-            <a href="https://github.com/Pusha876/gatsby-portfolio-blog" class="github-link" target="_blank">View on GitHub</a>
+        <a href="https://github.com/Pusha876/gatsby-portfolio-blog" class="github-link" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project">
+        <h3>Azure Static Web Apps</h3>
+        <p>This project has two separate learning parts. First, building a web app by using Gatsby web framework. Secondly, serving this portfolio website to the world by taking advantage of Azure Static Web Apps (for FREE😮).</p>
+        <div class="tech-list">
+            <strong>Technologies:</strong> Web hosting, Azure Functions, CI/CD with GitHub, SSL Certificates, Custom Domain
         </div>
-        
-        <div class="project">
-            <h3>Bash-based CLI Uploader Tool</h3>
-            <p>The azure-upload CLI tool is your new best friend for chucking files into Azure storage! It's like magic but with a progress bar. Just run it, sit back, and watch your files zoom to the cloud in style.✨📦🚀</p>
-            <div class="technologies">
-                <strong>Technologies:</strong>
-                <span class="tech-tag">Linux Bash</span>
-                <span class="tech-tag">Networking</span>
-                <span class="tech-tag">Blob Storage</span>
-                <span class="tech-tag">Service Principals</span>
-                <span class="tech-tag">GitHub</span>
-            </div>
-            <a href="https://github.com/Pusha876/azure-Cloud-Uploader-CLI" class="github-link" target="_blank">View on GitHub</a>
+        <a href="https://github.com/Pusha876/gatsby-portfolio-blog" class="github-link" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project">
+        <h3>Bash-based CLI Uploader Tool</h3>
+        <p>The azure-upload CLI tool is your new best friend for chucking files into Azure storage! It's like magic but with a progress bar. Just run it, sit back, and watch your files zoom to the cloud in style.✨📦🚀</p>
+        <div class="tech-list">
+            <strong>Technologies:</strong> Linux Bash, Networking, Blob Storage, Service Principals, GitHub
         </div>
-        
-        <div class="project">
-            <h3>autoscale-healthcheck-devops</h3>
-            <p>Many businesses suffer from unexpected application downtime and delayed incident recovery due to missing automated monitoring, alerting, and scaling. This project solves: Auto-healing infrastructure, Instant alerting, Automated scaling of critical apps, and Cost optimization via serverless or containerization.</p>
-            <div class="technologies">
-                <strong>Technologies:</strong>
-                <span class="tech-tag">Azure Container Instances</span>
-                <span class="tech-tag">Azure Monitor</span>
-                <span class="tech-tag">Log Analytics</span>
-                <span class="tech-tag">Terraform</span>
-                <span class="tech-tag">Azure DevOps</span>
-                <span class="tech-tag">Auto-healing</span>
-                <span class="tech-tag">Azure Functions</span>
-                <span class="tech-tag">Python API</span>
-            </div>
-            <a href="https://github.com/Pusha876/autoscale-healthcheck-devops" class="github-link" target="_blank">View on GitHub</a>
+        <a href="https://github.com/Pusha876/azure-Cloud-Uploader-CLI" class="github-link" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="project">
+        <h3>autoscale-healthcheck-devops</h3>
+        <p>Many businesses suffer from unexpected application downtime and delayed incident recovery due to missing automated monitoring, alerting, and scaling. This project solves: Auto-healing infrastructure, Instant alerting, Automated scaling of critical apps, and Cost optimization via serverless or containerization.</p>
+        <div class="tech-list">
+            <strong>Technologies:</strong> Azure Container Instances, Azure Monitor, Log Analytics, Terraform, Azure DevOps, Auto-healing, Azure Functions, Python API
         </div>
-        
-        <div class="footer">
-            <a href="https://github.com/Pusha876" class="profile-link" target="_blank">Visit my GitHub Profile</a>
-        </div>
+        <a href="https://github.com/Pusha876/autoscale-healthcheck-devops" class="github-link" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="footer">
+        <a href="https://github.com/Pusha876" class="profile-link" target="_blank">Visit my GitHub Profile</a>
     </div>
 </body>
 </html>
