@@ -14,3 +14,9 @@ export interface ImageObject {
     alt?: string;
     objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
 }
+
+export interface AllSettingsQueryResult<T> {
+    allSettingsJson: {
+        settings: T[];
+    };
+}

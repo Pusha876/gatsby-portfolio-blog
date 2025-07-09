@@ -47,7 +47,7 @@ export function useSiteConfiguration(): SiteConfiguration {
 
 export const query = graphql`
     query SiteConfiguration {
-        allSettingsJson: allContentJson {
+        allSettingsJson {
             settings: nodes {
                 siteConfiguration {
                     featureToggles {

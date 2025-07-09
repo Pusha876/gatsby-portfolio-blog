@@ -6,7 +6,7 @@
     "titleTemplate": "%s · Portfolio Minimal",
     "description": "Jamie Pryce's Portfolio Website.",
     "author": "Jamie B. Pryce",
-    "avatar": "../content/images/gatsby.png",
+    "avatar": "images/gatsby.png",
     "bio": "Aspiring Cloud Engineer who is fascinated with everything cloud related.",
     "social": {
       "twitter": "https://twitter.com/Pushtech876",
