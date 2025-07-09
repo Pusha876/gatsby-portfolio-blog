@@ -1,11 +1,11 @@
 {
   "intro": "Hello",
   "heroPhoto": {
-    "src": "../../images/P.I. Logo1.png",
+    "src": "images/P.I. Logo1.png",
     "alt": "My Photo"
   },
   "image": {
-    "src": "../../images/waving-blk-hand.png",
+    "src": "images/waving-blk-hand.png",
     "alt": "Waving Hand Emoji"
   },
   "title": "My name is Jamie B. Pryce.",

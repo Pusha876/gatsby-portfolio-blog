@@ -3,56 +3,56 @@
     {
       "label": "Music DJ",
       "image": {
-        "src": "../../images/dj.png",
+        "src": "images/dj.png",
         "alt": ""
       }
     },
     {
       "label": "Food",
       "image": {
-        "src": "../../images/lemon-salmon.png",
+        "src": "images/lemon-salmon.png",
         "alt": ""
       }
     },
     {
       "label": "Yoga",
       "image": {
-        "src": "../../images/Yoga.png",
+        "src": "images/Yoga.png",
         "alt": ""
       }
     },
     {
       "label": "Basketball",
       "image": {
-        "src": "../../images/Basketball.png",
+        "src": "images/Basketball.png",
         "alt": ""
       }
     },
     {
       "label": "American Football",
       "image": {
-        "src": "../../images/american-football.png",
+        "src": "images/american-football.png",
         "alt": ""
       }
     },
     {
       "label": "Football (Real football)",
       "image": {
-        "src": "../../images/soccer.png",
+        "src": "images/soccer.png",
         "alt": ""
       }
     },
     {
       "label": "Tennis",
       "image": {
-        "src": "../../images/tennis.png",
+        "src": "images/tennis.png",
         "alt": ""
       }
     },
     {
       "label": "Cloud",
       "image": {
-        "src": "../../images/Azure.png",
+        "src": "images/Azure.png",
         "alt": ""
       }
     }
