@@ -43,7 +43,7 @@ export default function ArticleTemplate(props: ArticleTemplateProps): React.Reac
                             <span className={classes.ReadingTime}>{article.readingTime.text}</span>
                         </div>
                     </section>
-                    {article.banner && article.banner.src && (
+                    {article.banner && article.banner.src && article.banner.src.childImageSharp?.gatsbyImageData && (
                         <section className={classes.Banner}>
                             <GatsbyImage
                                 image={article.banner.src.childImageSharp.gatsbyImageData}

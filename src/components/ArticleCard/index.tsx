@@ -34,7 +34,7 @@ export function ArticleCard(props: ArticleCardProps): React.ReactElement {
         >
             {props.showBanner && (
                 <div className={classes.Banner}>
-                    {props.data.image && props.data.image.src && (
+                    {props.data.image && props.data.image.src && props.data.image.src.childImageSharp?.gatsbyImageData && (
                         <GatsbyImage
                             className={classes.ImageWrapper}
                             imgClassName={classes.Image}

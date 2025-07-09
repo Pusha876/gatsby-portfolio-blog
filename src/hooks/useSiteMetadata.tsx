@@ -25,7 +25,7 @@ export function useSiteMetadata(): SiteMetadata {
 
 export const query = graphql`
     query SiteMetadata {
-        allSettingsJson {
+        allSettingsJson: allContentJson {
             settings: nodes {
                 siteMetadata {
                     author

@@ -7,9 +7,9 @@ export function AuthorSnippet(): React.ReactElement {
     const { author, avatar, bio } = useSiteMetadata();
     return (
         <div className={classes.AuthorSnippet}>
-            {avatar?.childImageSharp?.gatsbyImageData ? (
+            {avatar?.childImageSharp?.gatsbyImageData && (
                 <GatsbyImage image={avatar.childImageSharp.gatsbyImageData} alt={author} className={classes.Avatar} />
-            ) : null}
+            )}
             <div className={classes.Description}>
                 <span className={classes.WrittenBy}>
                     Written By <u>{author}</u>
