@@ -13,7 +13,6 @@ public
 #development
 .cache
 .husky
-.vscode
 
 # misc
 .DS_Store
