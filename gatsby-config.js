@@ -3,13 +3,13 @@ module.exports = {
     title: `Jamie Pryce - Portfolio`,
     description: `Azure Cloud Engineer Portfolio`,
     author: `Jamie Pryce`,
-    siteUrl: `https://jamie-pryce-portfolio.azurestaticapps.net`,
+    siteUrl: `https://www.jamiepryce.com`,
   },
   plugins: [
     {
       resolve: `gatsby-theme-portfolio-minimal`,
       options: {
-        siteUrl: `https://jamie-pryce-portfolio.azurestaticapps.net`,
+        siteUrl: `https://www.jamiepryce.com`,
         manifestSettings: {
           siteName: `Jamie Pryce - Portfolio`,
           shortName: `Jamie Portfolio`,
