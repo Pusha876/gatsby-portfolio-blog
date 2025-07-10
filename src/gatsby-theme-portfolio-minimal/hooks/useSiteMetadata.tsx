@@ -2,9 +2,22 @@ export interface SiteMetadata {
     language: string;
     siteUrl: string;
     title: string;
+    titleTemplate?: string;
     description: string;
     author: string;
     bio: string;
+    thumbnail?: {
+        childImageSharp: {
+            original: {
+                src: string;
+            };
+        };
+    };
+    avatar?: {
+        childImageSharp?: {
+            gatsbyImageData?: any;
+        };
+    };
     social: {
         github?: string;
         linkedin?: string;
@@ -39,6 +52,10 @@ export function useSiteMetadata(): SiteMetadata {
         language: 'en',
         siteUrl: 'https://polite-pond-08ff9450f.5.azurestaticapps.net',
         title: 'Jamie Pryce',
+        titleTemplate: '%s · Portfolio Minimal',
+        // Optional properties that might be accessed by theme components
+        thumbnail: undefined,
+        avatar: undefined,
         social: {
             github: 'https://github.com/Pusha876/azure-resume',
             linkedin: 'https://linkedin.com/in/jamie-pryce',
