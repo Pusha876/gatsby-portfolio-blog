@@ -17,6 +17,6 @@ export interface ImageObject {
 
 export interface AllSettingsQueryResult<T> {
     allSettingsJson: {
-        settings: T[];
+        settings: Array<{ siteMetadata: T; siteConfiguration: any }>;
     };
 }

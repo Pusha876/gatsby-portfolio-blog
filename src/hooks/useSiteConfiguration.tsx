@@ -1,6 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
-import { AllSettingsQueryResult } from '../types';
 
 export interface SiteConfiguration {
     featureToggles: {
@@ -41,57 +40,118 @@ export interface SiteConfiguration {
 }
 
 export function useSiteConfiguration(): SiteConfiguration {
-    const data: AllSettingsQueryResult<{ siteConfiguration: SiteConfiguration }> = useStaticQuery(query);
-    return data.allSettingsJson.settings[0].siteConfiguration;
+    try {
+        const data = useStaticQuery(query);
+        
+        // Defensive data access with fallbacks
+        const settingsNode = data?.allFile?.nodes?.[0]?.childrenSettingsJson?.[0];
+        const siteConfiguration = settingsNode?.siteConfiguration;
+        
+        if (!siteConfiguration) {
+            console.warn('Site configuration not found, using defaults');
+            return getDefaultSiteConfiguration();
+        }
+        
+        return {
+            featureToggles: {
+                useCookieBar: siteConfiguration.featureToggles?.useCookieBar ?? false,
+                useDarkModeAsDefault: siteConfiguration.featureToggles?.useDarkModeAsDefault ?? false,
+                useDarkModeBasedOnUsersPreference: siteConfiguration.featureToggles?.useDarkModeBasedOnUsersPreference ?? true
+            },
+            logo: {
+                text: siteConfiguration.logo?.text || 'Portfolio',
+                image: siteConfiguration.logo?.image || undefined,
+                imageDark: siteConfiguration.logo?.imageDark || undefined
+            },
+            navigation: {
+                ctaButton: siteConfiguration.navigation?.ctaButton || {
+                    label: 'Contact',
+                    openNewTab: false,
+                    url: '/#contact'
+                },
+                footer: siteConfiguration.navigation?.footer || [],
+                header: siteConfiguration.navigation?.header || []
+            }
+        };
+    } catch (error) {
+        console.warn('Failed to load site configuration, using defaults:', error);
+        return getDefaultSiteConfiguration();
+    }
+}
+
+function getDefaultSiteConfiguration(): SiteConfiguration {
+    return {
+        featureToggles: {
+            useCookieBar: false,
+            useDarkModeAsDefault: false,
+            useDarkModeBasedOnUsersPreference: true
+        },
+        logo: {
+            text: 'Jamie Pryce'
+        },
+        navigation: {
+            ctaButton: {
+                label: 'Contact',
+                openNewTab: false,
+                url: '/#contact'
+            },
+            footer: [],
+            header: [
+                { label: 'About', url: '/#about' },
+                { label: 'Projects', url: '/#projects' },
+                { label: 'Contact', url: '/#contact' }
+            ]
+        }
+    };
 }
 
 export const query = graphql`
     query SiteConfiguration {
-        allSettingsJson: allContentJson {
-            settings: nodes {
-                siteConfiguration {
-                    featureToggles {
-                        useCookieBar
-                        useDarkModeAsDefault
-                        useDarkModeBasedOnUsersPreference
-                    }
-                    logo {
-                        text
-                        image {
-                            extension
-                            publicURL
-                            svg {
-                                originalContent
-                            }
-                            childImageSharp {
-                                gatsbyImageData(width: 320, placeholder: BLURRED)
-                            }
+        allFile(filter: { name: { eq: "settings" }, extension: { eq: "json" } }) {
+            nodes {
+                childrenSettingsJson {
+                    siteConfiguration {
+                        featureToggles {
+                            useCookieBar
+                            useDarkModeAsDefault
+                            useDarkModeBasedOnUsersPreference
                         }
-                        imageDark {
-                            extension
-                            publicURL
-                            svg {
-                                originalContent
-                            }
-                            childImageSharp {
-                                gatsbyImageData(width: 320, placeholder: BLURRED)
-                            }
+                        logo {
+                            text
+                            image {
+                                extension
+                        publicURL
+                        svg {
+                            originalContent
+                        }
+                        childImageSharp {
+                            gatsbyImageData(width: 320, placeholder: BLURRED)
                         }
                     }
-                    navigation {
-                        ctaButton {
-                            label
-                            openNewTab
-                            url
+                    imageDark {
+                        extension
+                        publicURL
+                        svg {
+                            originalContent
                         }
-                        footer {
-                            label
-                            url
+                        childImageSharp {
+                            gatsbyImageData(width: 320, placeholder: BLURRED)
                         }
-                        header {
-                            label
-                            url
-                        }
+                    }
+                }
+                navigation {
+                    ctaButton {
+                        label
+                        openNewTab
+                        url
+                    }
+                    footer {
+                        label
+                        url
+                    }
+                    header {
+                        label
+                        url
                     }
                 }
             }
