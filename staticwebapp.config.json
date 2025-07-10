@@ -1,6 +1,18 @@
 {
   "routes": [
     {
+      "route": "/blog/*",
+      "rewrite": "/blog/index.html"
+    },
+    {
+      "route": "/privacy",
+      "rewrite": "/privacy/index.html"
+    },
+    {
+      "route": "/imprint",
+      "rewrite": "/imprint/index.html"
+    },
+    {
       "route": "/api/*",
       "allowedRoles": ["anonymous"]
     }
@@ -12,7 +24,12 @@
     ".html": "text/html",
     ".css": "text/css",
     ".js": "application/javascript",
-    ".json": "application/json"
+    ".json": "application/json",
+    ".png": "image/png",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".gif": "image/gif",
+    ".svg": "image/svg+xml"
   },
   "globalHeaders": {
     "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0",
