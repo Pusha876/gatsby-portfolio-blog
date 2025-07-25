@@ -3,7 +3,7 @@
     {
       "visible": true,
       "title": "Azure Resume Challenge",
-      "description": "This is a digital resume completely hosted on Azure with my own custom domain. I used a ton of Azure services to complete this project with very minimal cost (we love that😁).",
+      "description": "This is a digital resume completely hosted on Azure with my own custom domain. I used a ton of Azure services to complete this project with very minimal cost (we love that���).",
       "tags": ["Blob Storage", "Azure Functions", "CosmosDB", "Azure CDN", "CI/CD workflow with GitHub", "Webpage creation with HTML & CSS", "Serverless Database"],
       "image": {
         "src": "images/JP-Resume.png",
@@ -20,7 +20,7 @@
     {
       "visible": true,
       "title": "Azure Static Web Apps",
-      "description": "This project has two separate learning parts. First, building a web app by using Gatsby web framework. Secondly, serving this portfolio website to the world by taking advantage of Azure Static Web Apps (for FREE😮. ",
+      "description": "This project has two separate learning parts. First, building a web app by using Gatsby web framework. Secondly, serving this portfolio website to the world by taking advantage of Azure Static Web Apps (for FREE���. ",
       "tags": ["Web hosting", "Integrated API with Azure Functions", "CI/CD support from GitHub", "SSL Certificates", "Custom Domain"],
       "image": {
         "src": "images/portfolio-1.png",
@@ -36,7 +36,7 @@
     {
       "visible": true,
       "title": "Bash-based CLI Uploader Tool",
-      "description": "The azure-upload CLI tool is your new best friend for chucking files into Azure storage! It’s like magic but with a progress bar. Just run it, sit back, and watch your files zoom to the cloud in style.✨📦🚀 ",
+      "description": "The azure-upload CLI tool is your new best friend for chucking files into Azure storage! It's like magic but with a progress bar. Just run it, sit back, and watch your files zoom to the cloud in style.✨������ ",
       "tags": ["Linux Bash and Networking","Blob Storage", "Service Principals", "GitHub Repository"],
       "image": {
         "src": "images/uploader-flow.png",
@@ -46,6 +46,22 @@
         {
           "type": "github",
           "url": "https://github.com/Pusha876/azure-Cloud-Uploader-CLI"
+        }
+      ]
+    },
+    {
+      "visible": true,
+      "title": "Virtual Mail Server with Docker-Mailserver",
+      "description": "A complete email server solution using Docker-Mailserver with secure configuration, anti-spam protection, and modern email protocols. Features automated deployment, SSL/TLS encryption, and comprehensive email security measures.",
+      "tags": ["Docker", "Email Server", "SMTP/IMAP", "SSL/TLS", "Anti-spam", "Postfix", "Dovecot", "Linux Administration"],
+      "image": {
+        "src": "images/wrench.png",
+        "alt": "Virtual Mail Server Architecture"
+      },
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/Pusha876/virtual-mail-server"
         }
       ]
     }
