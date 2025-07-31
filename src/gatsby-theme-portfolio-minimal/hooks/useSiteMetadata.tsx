@@ -65,3 +65,6 @@ export function useSiteMetadata(): SiteMetadata {
         }
     };
 }
+
+// Default export for compatibility
+export default useSiteMetadata;
