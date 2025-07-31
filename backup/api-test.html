@@ -42,6 +42,47 @@
         <div id="contact-result" class="result"></div>
     </div>
 
+    <div class="endpoint">
+        <h3>Projects Data</h3>
+        <button onclick="testProjects()">Test /api/projects</button>
+        <div id="projects-result" class="result"></div>
+    </div>
+
+    <div class="endpoint">
+        <h3>Portfolio Projects Display</h3>
+        <p>Current projects in portfolio (including new Docker and WordPress projects):</p>
+        <div id="projects-display" style="background: #f0f8ff; padding: 15px; border-radius: 5px; margin: 10px 0;">
+            <div style="margin: 10px 0; padding: 10px; border-left: 4px solid #0078d4;">
+                <h4 style="margin: 0 0 5px 0; color: #0078d4;">Virtual Mail Server with Docker-Mailserver</h4>
+                <p style="margin: 5px 0; font-size: 14px;">A complete email server solution using Docker-Mailserver with secure configuration, anti-spam protection, and modern email protocols.</p>
+                <p style="margin: 5px 0; font-size: 12px; color: #666;"><strong>Tech:</strong> Docker, Email Server, SMTP/IMAP, SSL/TLS, Anti-spam, Postfix, Dovecot</p>
+                <a href="https://github.com/Pusha876/virtual-mail-server" target="_blank" style="color: #0078d4; text-decoration: none;">🔗 GitHub</a>
+            </div>
+            <div style="margin: 10px 0; padding: 10px; border-left: 4px solid #6f42c1;">
+                <h4 style="margin: 0 0 5px 0; color: #6f42c1;">Running Containerized Applications with Docker</h4>
+                <p style="margin: 5px 0; font-size: 14px;">Comprehensive Docker containerization project focusing on application deployment, optimization, and lifecycle management.</p>
+                <p style="margin: 5px 0; font-size: 12px; color: #666;"><strong>Tech:</strong> Docker, Linux CLI, Package Management, Dockerfile Optimization, Persistent Volumes, Container Lifecycle</p>
+                <a href="https://github.com/Pusha876/docker-containerized-apps" target="_blank" style="color: #6f42c1; text-decoration: none;">🔗 GitHub</a>
+            </div>
+            <div style="margin: 10px 0; padding: 10px; border-left: 4px solid #20c997;">
+                <h4 style="margin: 0 0 5px 0; color: #20c997;">Setup Web + DNS + WordPress</h4>
+                <p style="margin: 5px 0; font-size: 14px;">Complete web infrastructure setup with custom DNS configuration and WordPress deployment.</p>
+                <p style="margin: 5px 0; font-size: 12px; color: #666;"><strong>Tech:</strong> Ubuntu, Docker, BIND9, Apache, WordPress, Linux Administration, Bash Scripting</p>
+                <a href="https://github.com/Pusha876/web-dns-wordpress-setup" target="_blank" style="color: #20c997; text-decoration: none;">🔗 GitHub</a>
+            </div>
+            <div style="margin: 10px 0; padding: 10px; border-left: 4px solid #28a745;">
+                <h4 style="margin: 0 0 5px 0; color: #28a745;">Azure Resume Challenge</h4>
+                <p style="margin: 5px 0; font-size: 14px;">Digital resume hosted on Azure with custom domain using multiple Azure services.</p>
+                <p style="margin: 5px 0; font-size: 12px; color: #666;"><strong>Tech:</strong> Blob Storage, Azure Functions, CosmosDB, Azure CDN, CI/CD</p>
+            </div>
+            <div style="margin: 10px 0; padding: 10px; border-left: 4px solid #ffc107;">
+                <h4 style="margin: 0 0 5px 0; color: #e67e22;">Bash-based CLI Uploader Tool</h4>
+                <p style="margin: 5px 0; font-size: 14px;">CLI tool for uploading files to Azure storage with progress tracking.</p>
+                <p style="margin: 5px 0; font-size: 12px; color: #666;"><strong>Tech:</strong> Linux Bash, Networking, Blob Storage, Service Principals</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         const baseUrl = window.location.origin;
         
@@ -98,6 +139,22 @@
                     },
                     body: JSON.stringify(formData)
                 });
+                const data = await response.json();
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+                resultDiv.className = response.ok ? 'result success' : 'result error';
+            } catch (error) {
+                resultDiv.textContent = `Error: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+
+        async function testProjects() {
+            const resultDiv = document.getElementById('projects-result');
+            resultDiv.textContent = 'Testing...';
+            resultDiv.className = 'result';
+            
+            try {
+                const response = await fetch(`${baseUrl}/api/projects`);
                 const data = await response.json();
                 resultDiv.textContent = JSON.stringify(data, null, 2);
                 resultDiv.className = response.ok ? 'result success' : 'result error';

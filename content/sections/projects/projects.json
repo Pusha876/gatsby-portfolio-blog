@@ -64,6 +64,38 @@
           "url": "https://github.com/Pusha876/virtual-mail-server"
         }
       ]
+    },
+    {
+      "visible": true,
+      "title": "Running Containerized Applications with Docker",
+      "description": "Comprehensive Docker containerization project focusing on application deployment, optimization, and lifecycle management. Demonstrates advanced container orchestration, persistent data handling, and network configuration best practices.",
+      "tags": ["Docker", "Linux CLI", "Package Management", "Dockerfile Optimization", "Persistent Volumes", "Bridged Network Configuration", "Container Lifecycle Management"],
+      "image": {
+        "src": "images/docker.png",
+        "alt": "Docker Containerization"
+      },
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/Pusha876/docker-containerized-apps"
+        }
+      ]
+    },
+    {
+      "visible": true,
+      "title": "Setup Web + DNS + WordPress",
+      "description": "Complete web infrastructure setup with custom DNS configuration and WordPress deployment. Features Ubuntu server configuration, Docker containerization, BIND9 DNS management, Apache web server, and WordPress CMS integration.",
+      "tags": ["Ubuntu", "Docker", "BIND9", "Apache", "WordPress", "Linux Administration", "Bash Scripting", "DNS Management"],
+      "image": {
+        "src": "images/wordpress.png",
+        "alt": "Web DNS WordPress Setup"
+      },
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/Pusha876/web-dns-wordpress-setup"
+        }
+      ]
     }
   ],
   "button": {
