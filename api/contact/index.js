@@ -13,15 +13,59 @@ try {
 }
 
 module.exports = async function (context, req) {
+    // Log the incoming request for debugging
+    context.log('Contact endpoint hit:', {
+        method: req.method,
+        url: req.url,
+        headers: req.headers,
+        hasBody: !!req.body
+    });
+
     // Handle CORS preflight requests
     if (req.method === 'OPTIONS') {
         context.res = {
             status: 200,
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Max-Age': '86400'
+            }
+        };
+        return;
+    }
+
+    // Handle GET requests for debugging
+    if (req.method === 'GET') {
+        context.res = {
+            status: 200,
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: {
+                message: 'Contact endpoint is working! Use POST method to submit contact forms.',
+                allowedMethods: ['GET', 'POST', 'OPTIONS'],
+                timestamp: new Date().toISOString()
+            }
+        };
+        return;
+    }
+
+    // Only allow POST method for form submissions
+    if (req.method !== 'POST') {
+        context.res = {
+            status: 405,
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Allow': 'GET, POST, OPTIONS'
+            },
+            body: {
+                success: false,
+                message: `Method ${req.method} not allowed. Use POST to submit contact forms.`,
+                allowedMethods: ['GET', 'POST', 'OPTIONS'],
+                timestamp: new Date().toISOString()
             }
         };
         return;

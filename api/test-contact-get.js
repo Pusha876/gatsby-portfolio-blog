@@ -1,0 +1,61 @@
+/**
+ * Test GET request to contact endpoint
+ */
+
+// Load environment variables from local.settings.json
+const fs = require('fs');
+const path = require('path');
+
+try {
+    const settingsPath = path.join(__dirname, 'local.settings.json');
+    const settings = JSON.parse(fs.readFileSync(settingsPath, 'utf8'));
+    
+    // Set environment variables
+    Object.keys(settings.Values).forEach(key => {
+        process.env[key] = settings.Values[key];
+    });
+    
+    console.log('📋 Environment variables loaded from local.settings.json');
+} catch (error) {
+    console.error('❌ Failed to load local.settings.json:', error.message);
+}
+
+// Now load and test the contact function
+const contactFunction = require('./contact/index.js');
+
+// Mock Azure Function context
+const mockContext = {
+    log: (...args) => console.log('📝 [LOG]', ...args),
+    res: null
+};
+
+// Add the missing log methods
+mockContext.log.error = (...args) => console.error('🚨 [ERROR]', ...args);
+mockContext.log.warn = (...args) => console.warn('⚠️  [WARN]', ...args);
+mockContext.log.info = (...args) => console.info('ℹ️  [INFO]', ...args);
+
+// Mock GET request
+const mockGetRequest = {
+    method: 'GET',
+    headers: {}
+};
+
+async function testContactGet() {
+    console.log('🧪 Testing Contact Function with GET request...\n');
+    
+    try {
+        console.log('📨 Sending GET request to contact endpoint...');
+        await contactFunction(mockContext, mockGetRequest);
+        
+        console.log('\n✅ GET request executed successfully!');
+        console.log('📋 Response Status:', mockContext.res?.status);
+        console.log('📋 Response Body:', JSON.stringify(mockContext.res?.body, null, 2));
+        
+    } catch (error) {
+        console.error('\n❌ Function failed:', error);
+        console.error('Stack trace:', error.stack);
+    }
+}
+
+// Run the test
+testContactGet();

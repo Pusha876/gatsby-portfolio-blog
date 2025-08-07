@@ -260,6 +260,11 @@
         <div class="api-card">
             <h4>Contact Form (with API)</h4>
             <p>Send a message using the Azure Functions backend:</p>
+            
+            <!-- Add test button for contact endpoint -->
+            <button class="api-button" onclick="testContactEndpoint()" style="margin-bottom: 10px;">Test Contact Endpoint</button>
+            <div id="contact-test-result" class="api-result" style="display: none;"></div>
+            
             <form class="contact-form" onsubmit="submitContactForm(event)">
                 <input type="text" id="contact-name" placeholder="Your Name" required>
                 <input type="email" id="contact-email" placeholder="Your Email" required>
@@ -307,6 +312,24 @@
             
             try {
                 const response = await fetch(apiUrl);
+                const data = await response.json();
+                resultDiv.innerHTML = `<strong>Status:</strong> ${response.status}<br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+            } catch (error) {
+                resultDiv.innerHTML = `<strong>Error:</strong> ${error.message}`;
+            }
+        }
+        
+        async function testContactEndpoint() {
+            const resultDiv = document.getElementById('contact-test-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = 'Testing contact endpoint...';
+            
+            const apiUrl = `${API_BASE}/contact`;
+            console.log('🔗 Testing Contact API URL:', apiUrl);
+            
+            try {
+                // Test with GET first to see if endpoint exists
+                const response = await fetch(apiUrl, { method: 'GET' });
                 const data = await response.json();
                 resultDiv.innerHTML = `<strong>Status:</strong> ${response.status}<br><pre>${JSON.stringify(data, null, 2)}</pre>`;
             } catch (error) {
