@@ -277,16 +277,19 @@
     </div>
 
     <script>
-        // API base URL - works for both local development and production
-        const API_BASE = '/api';
+        // API base URL - use absolute path to ensure it works from any page URL
+        const API_BASE = window.location.origin + '/api';
         
         async function testHealthEndpoint() {
             const resultDiv = document.getElementById('health-result');
             resultDiv.style.display = 'block';
             resultDiv.innerHTML = 'Loading...';
             
+            const apiUrl = `${API_BASE}/health`;
+            console.log('🔗 Health API URL:', apiUrl);
+            
             try {
-                const response = await fetch(`${API_BASE}/health`);
+                const response = await fetch(apiUrl);
                 const data = await response.json();
                 resultDiv.innerHTML = `<strong>Status:</strong> ${response.status}<br><pre>${JSON.stringify(data, null, 2)}</pre>`;
             } catch (error) {
@@ -299,8 +302,11 @@
             resultDiv.style.display = 'block';
             resultDiv.innerHTML = 'Loading...';
             
+            const apiUrl = `${API_BASE}/stats`;
+            console.log('🔗 Stats API URL:', apiUrl);
+            
             try {
-                const response = await fetch(`${API_BASE}/stats`);
+                const response = await fetch(apiUrl);
                 const data = await response.json();
                 resultDiv.innerHTML = `<strong>Status:</strong> ${response.status}<br><pre>${JSON.stringify(data, null, 2)}</pre>`;
             } catch (error) {
@@ -321,11 +327,15 @@
                 message: document.getElementById('contact-message').value
             };
             
+            const apiUrl = `${API_BASE}/contact`;
+            console.log('🔗 API URL being called:', apiUrl);
+            console.log('📍 Current page URL:', window.location.href);
+            
             statusDiv.innerHTML = '<div class="status-message">Sending message...</div>';
             resultDiv.style.display = 'none';
             
             try {
-                const response = await fetch(`${API_BASE}/contact`, {
+                const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -380,6 +390,16 @@
         
         // Auto-load health check on page load to show the API is working
         document.addEventListener('DOMContentLoaded', function() {
+            // Show the API base URL for debugging
+            console.log('🌐 API Base URL:', API_BASE);
+            console.log('📍 Current Page:', window.location.href);
+            
+            // Add API URL info to the page
+            const apiSection = document.querySelector('.api-section h3');
+            if (apiSection) {
+                apiSection.innerHTML = `🚀 Live API Integration Demo<br><small style="font-weight: normal; color: #666; font-size: 14px;">API Base: ${API_BASE}</small>`;
+            }
+            
             // Small delay to let the page render first
             setTimeout(() => {
                 testHealthEndpoint();
