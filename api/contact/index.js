@@ -2,7 +2,15 @@
  * Contact form submission endpoint
  * Handles contact form submissions with validation and email sending
  */
-const sgMail = require('@sendgrid/mail');
+
+// Safely require SendGrid with fallback
+let sgMail;
+try {
+    sgMail = require('@sendgrid/mail');
+} catch (error) {
+    console.warn('SendGrid module not available:', error.message);
+    sgMail = null;
+}
 
 module.exports = async function (context, req) {
     // Handle CORS preflight requests
@@ -74,7 +82,12 @@ module.exports = async function (context, req) {
         });
 
         // Send email notification using SendGrid
-        await sendEmailNotification(context, { name, email, subject, message });
+        try {
+            await sendEmailNotification(context, { name, email, subject, message });
+        } catch (emailError) {
+            context.log.error('Email sending failed, but continuing with response:', emailError);
+            // Don't fail the entire request if email fails
+        }
         
         const response = {
             success: true,
@@ -94,8 +107,38 @@ module.exports = async function (context, req) {
         };
         
     } catch (error) {
-        context.log.error('Contact form submission failed:', error);
+        // Safely log error
+        if (context.log && context.log.error) {
+            context.log.error('Contact form submission failed:', error);
+        } else {
+            console.error('Contact form submission failed:', error);
+        }
         
+        // Ensure we always return a proper JSON response
+        const errorResponse = {
+            success: false,
+            message: 'An error occurred while processing your message. Please try again later.',
+            timestamp: new Date().toISOString(),
+            error: error.message || 'Unknown error'
+        };
+        
+        context.res = {
+            status: 500,
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: errorResponse
+        };
+    }
+    
+    // Fallback: Ensure context.res is always set
+    if (!context.res) {
+        if (context.log && context.log.error) {
+            context.log.error('No response was set, providing fallback response');
+        } else {
+            console.error('No response was set, providing fallback response');
+        }
         context.res = {
             status: 500,
             headers: {
@@ -104,7 +147,7 @@ module.exports = async function (context, req) {
             },
             body: {
                 success: false,
-                message: 'An error occurred while processing your message. Please try again later.',
+                message: 'An unexpected error occurred',
                 timestamp: new Date().toISOString()
             }
         };
@@ -121,6 +164,19 @@ async function sendEmailNotification(context, formData) {
         const apiKey = process.env.SENDGRID_API_KEY;
         const fromEmail = process.env.FROM_EMAIL || 'noreply@pipush.com';
         const toEmail = process.env.TO_EMAIL || 'pushtech@pipush.com';
+
+        // Check if SendGrid module is available
+        if (!sgMail) {
+            context.log.warn('SendGrid module not available - email will not be sent');
+            context.log.info('Contact form data would be emailed to:', toEmail);
+            context.log.info('Form submission details:', {
+                name: formData.name,
+                email: formData.email,
+                subject: formData.subject,
+                message: formData.message.substring(0, 100) + '...'
+            });
+            return;
+        }
 
         if (!apiKey) {
             context.log.warn('SendGrid API key not configured - email will not be sent');
@@ -197,6 +253,12 @@ Submitted at: ${new Date().toISOString()}
  */
 async function sendConfirmationEmail(context, formData, fromEmail) {
     try {
+        // Check if SendGrid module is available
+        if (!sgMail) {
+            context.log.warn('SendGrid module not available - confirmation email will not be sent');
+            return;
+        }
+
         const confirmationEmail = {
             to: formData.email,
             from: fromEmail,
