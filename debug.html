@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Functions Debug</title>
+    <style>
+        body { font-family: monospace; padding: 20px; }
+        .test { margin: 20px 0; padding: 15px; border: 1px solid #ddd; }
+        .result { background: #f5f5f5; padding: 10px; margin: 10px 0; white-space: pre-wrap; }
+        button { padding: 10px; margin: 5px; }
+        .error { background: #ffebee; }
+        .success { background: #e8f5e8; }
+    </style>
+</head>
+<body>
+    <h1>Azure Functions Diagnostic</h1>
+    
+    <div class="test">
+        <h3>Environment Information</h3>
+        <div id="env-info"></div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 1: Check if /api/health exists</h3>
+        <button onclick="testHealth()">Test Health</button>
+        <div id="health-result" class="result"></div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 2: Check if /api/test exists</h3>
+        <button onclick="testSimple()">Test Simple</button>
+        <div id="test-result" class="result"></div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 3: Check if /api/contact exists</h3>
+        <button onclick="testContact()">Test Contact</button>
+        <div id="contact-result" class="result"></div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 4: Raw Response Check</h3>
+        <button onclick="testRaw()">Check Raw Response</button>
+        <div id="raw-result" class="result"></div>
+    </div>
+
+    <script>
+        // Show environment info
+        document.getElementById('env-info').innerHTML = `
+Current URL: ${window.location.href}
+Origin: ${window.location.origin}
+API Base: ${window.location.origin}/api
+User Agent: ${navigator.userAgent}
+        `;
+
+        async function logResponse(name, url, options = {}) {
+            const resultDiv = document.getElementById(name + '-result');
+            resultDiv.innerHTML = `Testing ${url}...`;
+            
+            try {
+                console.log(`🧪 Testing ${name}:`, url, options);
+                const response = await fetch(url, options);
+                
+                console.log(`📊 ${name} Response:`, {
+                    status: response.status,
+                    statusText: response.statusText,
+                    headers: Object.fromEntries(response.headers.entries()),
+                    url: response.url,
+                    ok: response.ok
+                });
+                
+                let responseText;
+                try {
+                    responseText = await response.text();
+                    console.log(`📄 ${name} Body:`, responseText);
+                } catch (e) {
+                    responseText = `[Could not read response body: ${e.message}]`;
+                }
+                
+                let data;
+                try {
+                    data = JSON.parse(responseText);
+                } catch (e) {
+                    data = responseText;
+                }
+                
+                const result = {
+                    status: response.status,
+                    statusText: response.statusText,
+                    ok: response.ok,
+                    data: data,
+                    rawResponse: responseText.substring(0, 500)
+                };
+                
+                resultDiv.innerHTML = JSON.stringify(result, null, 2);
+                resultDiv.className = response.ok ? 'result success' : 'result error';
+                
+            } catch (error) {
+                console.error(`❌ ${name} Error:`, error);
+                resultDiv.innerHTML = `Error: ${error.message}\\nStack: ${error.stack}`;
+                resultDiv.className = 'result error';
+            }
+        }
+
+        async function testHealth() {
+            await logResponse('health', `${window.location.origin}/api/health`);
+        }
+
+        async function testSimple() {
+            await logResponse('test', `${window.location.origin}/api/test`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ test: 'data' })
+            });
+        }
+
+        async function testContact() {
+            await logResponse('contact', `${window.location.origin}/api/contact`);
+        }
+
+        async function testRaw() {
+            const resultDiv = document.getElementById('raw-result');
+            const url = `${window.location.origin}/api/health`;
+            
+            resultDiv.innerHTML = 'Checking raw response...';
+            
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                
+                resultDiv.innerHTML = `
+Status: ${response.status}
+Headers: ${JSON.stringify(Object.fromEntries(response.headers.entries()), null, 2)}
+
+Raw Response (first 1000 chars):
+${text.substring(0, 1000)}
+                `;
+                
+            } catch (error) {
+                resultDiv.innerHTML = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
