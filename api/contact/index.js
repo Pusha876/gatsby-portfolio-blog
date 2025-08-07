@@ -1,7 +1,9 @@
 /**
  * Contact form submission endpoint
- * Handles contact form submissions with validation and logging
+ * Handles contact form submissions with validation and email sending
  */
+const sgMail = require('@sendgrid/mail');
+
 module.exports = async function (context, req) {
     // Handle CORS preflight requests
     if (req.method === 'OPTIONS') {
@@ -70,13 +72,9 @@ module.exports = async function (context, req) {
             userAgent: req.headers['user-agent'] || 'unknown',
             ip: req.headers['x-forwarded-for'] || 'unknown'
         });
-        
-        // In a real application, you would:
-        // 1. Send an email notification
-        // 2. Store the message in a database
-        // 3. Send a confirmation email to the user
-        // 4. Implement rate limiting
-        // 5. Add spam protection
+
+        // Send email notification using SendGrid
+        await sendEmailNotification(context, { name, email, subject, message });
         
         const response = {
             success: true,
@@ -112,3 +110,137 @@ module.exports = async function (context, req) {
         };
     }
 };
+
+/**
+ * Send email notification using SendGrid
+ * @param {Object} context - Azure Function context
+ * @param {Object} formData - Contact form data
+ */
+async function sendEmailNotification(context, formData) {
+    try {
+        const apiKey = process.env.SENDGRID_API_KEY;
+        const fromEmail = process.env.FROM_EMAIL || 'noreply@pipush.com';
+        const toEmail = process.env.TO_EMAIL || 'pushtech@pipush.com';
+
+        if (!apiKey) {
+            context.log.warn('SendGrid API key not configured - email will not be sent');
+            return;
+        }
+
+        // Set SendGrid API key
+        sgMail.setApiKey(apiKey);
+
+        // Create email content
+        const emailContent = {
+            to: toEmail,
+            from: fromEmail,
+            subject: `Portfolio Contact: ${formData.subject}`,
+            text: `
+New contact form submission from your portfolio website:
+
+Name: ${formData.name}
+Email: ${formData.email}
+Subject: ${formData.subject}
+
+Message:
+${formData.message}
+
+---
+Submitted at: ${new Date().toISOString()}
+            `.trim(),
+            html: `
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+    <h2 style="color: #333; border-bottom: 2px solid #0066cc; padding-bottom: 10px;">
+        New Contact Form Submission
+    </h2>
+    
+    <div style="background-color: #f9f9f9; padding: 20px; border-radius: 5px; margin: 20px 0;">
+        <p><strong>Name:</strong> ${formData.name}</p>
+        <p><strong>Email:</strong> <a href="mailto:${formData.email}">${formData.email}</a></p>
+        <p><strong>Subject:</strong> ${formData.subject}</p>
+    </div>
+    
+    <div style="margin: 20px 0;">
+        <h3 style="color: #333;">Message:</h3>
+        <div style="background-color: #ffffff; padding: 15px; border-left: 4px solid #0066cc; border-radius: 3px;">
+            ${formData.message.replace(/\n/g, '<br>')}
+        </div>
+    </div>
+    
+    <hr style="border: none; height: 1px; background-color: #ddd; margin: 30px 0;">
+    <p style="color: #666; font-size: 12px;">
+        Submitted at: ${new Date().toISOString()}<br>
+        From: Portfolio Website Contact Form
+    </p>
+</div>
+            `.trim()
+        };
+
+        // Send email
+        await sgMail.send(emailContent);
+        context.log('Email notification sent successfully');
+
+        // Send confirmation email to the user
+        await sendConfirmationEmail(context, formData, fromEmail);
+        
+    } catch (error) {
+        context.log.error('Failed to send email notification:', error);
+        // Don't throw - we don't want email failure to break the contact form
+    }
+}
+
+/**
+ * Send confirmation email to the user
+ * @param {Object} context - Azure Function context
+ * @param {Object} formData - Contact form data
+ * @param {string} fromEmail - From email address
+ */
+async function sendConfirmationEmail(context, formData, fromEmail) {
+    try {
+        const confirmationEmail = {
+            to: formData.email,
+            from: fromEmail,
+            subject: 'Thank you for contacting me!',
+            text: `
+Hi ${formData.name},
+
+Thank you for reaching out through my portfolio website! I have received your message about "${formData.subject}" and will get back to you as soon as possible.
+
+Your message:
+${formData.message}
+
+Best regards,
+Jamie Pryce
+            `.trim(),
+            html: `
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+    <h2 style="color: #0066cc;">Thank you for contacting me!</h2>
+    
+    <p>Hi ${formData.name},</p>
+    
+    <p>Thank you for reaching out through my portfolio website! I have received your message about "<strong>${formData.subject}</strong>" and will get back to you as soon as possible.</p>
+    
+    <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <h3 style="color: #333; margin-top: 0;">Your message:</h3>
+        <p style="margin-bottom: 0;">${formData.message.replace(/\n/g, '<br>')}</p>
+    </div>
+    
+    <p>Best regards,<br>
+    <strong>Jamie Pryce</strong></p>
+    
+    <hr style="border: none; height: 1px; background-color: #ddd; margin: 30px 0;">
+    <p style="color: #666; font-size: 12px;">
+        This is an automated confirmation email from my portfolio website.
+    </p>
+</div>
+            `.trim()
+        };
+
+        await sgMail.send(confirmationEmail);
+        context.log('Confirmation email sent to user');
+        
+    } catch (error) {
+        context.log.error('Failed to send confirmation email:', error);
+        // Don't throw - confirmation email failure shouldn't break the main flow
+    }
+}
