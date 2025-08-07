@@ -333,9 +333,34 @@
                     body: JSON.stringify(formData)
                 });
                 
-                const data = await response.json();
+                // Check if we got a response
+                if (!response) {
+                    throw new Error('No response received from server');
+                }
                 
-                if (response.ok && data.success) {
+                // Check if response is ok
+                if (!response.ok) {
+                    // Try to get error message from response
+                    let errorMessage = `Server error (${response.status})`;
+                    try {
+                        const errorData = await response.json();
+                        errorMessage = errorData.message || errorMessage;
+                    } catch (parseError) {
+                        // If we can't parse the error response, use the status
+                        errorMessage = `Server error (${response.status}): ${response.statusText}`;
+                    }
+                    throw new Error(errorMessage);
+                }
+                
+                // Try to parse JSON response
+                let data;
+                try {
+                    data = await response.json();
+                } catch (parseError) {
+                    throw new Error('Invalid response format from server. Please try again.');
+                }
+                
+                if (data.success) {
                     statusDiv.innerHTML = `<div class="status-message success">${data.message}</div>`;
                     document.querySelector('.contact-form').reset();
                 } else {
@@ -346,6 +371,7 @@
                 resultDiv.style.display = 'block';
                 
             } catch (error) {
+                console.error('Contact form error:', error);
                 statusDiv.innerHTML = `<div class="status-message error">Error: ${error.message}</div>`;
                 resultDiv.innerHTML = `<strong>Error:</strong> ${error.message}`;
                 resultDiv.style.display = 'block';
